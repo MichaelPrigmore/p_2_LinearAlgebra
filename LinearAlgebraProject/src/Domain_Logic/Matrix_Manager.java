@@ -1,3 +1,4 @@
+package Domain_Logic;
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
 
@@ -17,6 +18,36 @@ public class Matrix_Manager
 		this.number_Of_Rows_In_Matrix = m;
 		this.number_Of_Columns_In_Matrix = n;
 		this.my_Matrix = new double[m][n];
+	}
+
+	public int getNumber_Of_Rows_In_Matrix()
+	{
+		return number_Of_Rows_In_Matrix;
+	}
+
+	public void setNumber_Of_Rows_In_Matrix(int number_Of_Rows_In_Matrix)
+	{
+		this.number_Of_Rows_In_Matrix = number_Of_Rows_In_Matrix;
+	}
+
+	public int getNumber_Of_Columns_In_Matrix()
+	{
+		return number_Of_Columns_In_Matrix;
+	}
+
+	public void setNumber_Of_Columns_In_Matrix(int number_Of_Columns_In_Matrix)
+	{
+		this.number_Of_Columns_In_Matrix = number_Of_Columns_In_Matrix;
+	}
+
+	public double[][] getMy_Matrix()
+	{
+		return my_Matrix;
+	}
+
+	public void setMy_Matrix(double[][] my_Matrix)
+	{
+		this.my_Matrix = my_Matrix;
 	}
 
 	public double get_Value_At_Index(int m, int n)
