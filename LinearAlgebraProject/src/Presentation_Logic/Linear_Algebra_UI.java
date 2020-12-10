@@ -113,6 +113,8 @@ public class Linear_Algebra_UI
 		matrix = calculator.computeEchelonForm();
 		appTester.print_Matrix(matrix);
 
+		StdOut.print("\n");
+
 		matrix = calculator.computeReducedEchelonForm();
 		appTester.print_Matrix(matrix);
 	}

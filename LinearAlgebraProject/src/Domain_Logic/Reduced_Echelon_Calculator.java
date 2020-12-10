@@ -99,7 +99,7 @@ public class Reduced_Echelon_Calculator
 			// done. Only do the next operations if m is not the last row.
 			if (m != (matrix.length - 1))
 			{
-				multiplier = matrix[pivot_Row + 1][pivot_Column];
+				// multiplier = matrix[pivot_Row + 1][pivot_Column];
 				for (int m2 = m + 1; m2 < matrix.length; m2++)
 				{
 					multiplier = matrix[m2][pivot_Column];
@@ -139,8 +139,24 @@ public class Reduced_Echelon_Calculator
 	{
 		generate_List_Of_Pivots();
 
-		for (int i = 0; i < list_of_pivots.size(); i++)
+		// stop before 0, not -1, because we don't need to delete anything above
+		// first row.
+		for (int i = list_of_pivots.size() - 1; i > 0; i--)
 		{
+			current_Base_Row = Arrays.copyOfRange(matrix[list_of_pivots.get(i).getRow_Pivot_Index()], 0,
+					matrix[list_of_pivots.get(i).getRow_Pivot_Index()].length);
+
+			for (int m2 = list_of_pivots.get(i).getRow_Pivot_Index() - 1; m2 > -1; m2--)
+			{
+				multiplier = matrix[m2][list_of_pivots.get(i).getColumn_Pivot_Index()];
+
+				for (int n = 0; n < matrix[0].length; n++)
+				{
+
+					matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n]; // **same.
+
+				}
+			}
 
 		}
 
