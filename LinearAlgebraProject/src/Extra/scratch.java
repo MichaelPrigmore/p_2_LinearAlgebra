@@ -1,4 +1,4 @@
-package Domain_Logic;
+package Extra;
 
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
