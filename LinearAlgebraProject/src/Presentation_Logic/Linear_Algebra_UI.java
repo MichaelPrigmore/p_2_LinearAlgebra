@@ -1,4 +1,5 @@
 package Presentation_Logic;
+
 import java.util.ArrayList;
 
 import Domain_Logic.Matrix_Manager;
@@ -51,6 +52,26 @@ public class Linear_Algebra_UI
 			}
 			StdOut.print("\n");
 		}
+	}
+
+	public void print_Matrix_Column_Traversal()
+	{
+		for (int n = 0; n < mat.get_My_Matrix()[0].length; n++)
+		{
+			for (int m = 0; m < mat.get_My_Matrix().length; m++)
+			{
+				StdOut.print(mat.get_My_Matrix()[m][n] + "\t");
+			}
+			StdOut.print("\n");
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		Linear_Algebra_UI appTester = new Linear_Algebra_UI();
+		appTester.setup_matrix();
+		appTester.print_Matrix();
+		appTester.print_Matrix_Column_Traversal();
 	}
 
 }

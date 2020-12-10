@@ -1,4 +1,5 @@
 package Domain_Logic;
+
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
 
@@ -38,11 +39,6 @@ public class Matrix_Manager
 	public void setNumber_Of_Columns_In_Matrix(int number_Of_Columns_In_Matrix)
 	{
 		this.number_Of_Columns_In_Matrix = number_Of_Columns_In_Matrix;
-	}
-
-	public double[][] getMy_Matrix()
-	{
-		return my_Matrix;
 	}
 
 	public void setMy_Matrix(double[][] my_Matrix)
