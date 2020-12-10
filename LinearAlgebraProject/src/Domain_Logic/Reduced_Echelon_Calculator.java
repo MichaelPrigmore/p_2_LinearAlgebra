@@ -1,7 +1,9 @@
 package Domain_Logic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
+import Presentation_Logic.Linear_Algebra_UI;
 import edu.princeton.cs.introcs.StdOut;
 
 public class Reduced_Echelon_Calculator
@@ -10,11 +12,18 @@ public class Reduced_Echelon_Calculator
 	// int m;
 	// int n;
 	int pivot_Column;
+	int pivot_Row;
 	int nonzero_Row;
 	double divisor;
 	double multiplier;
 	double[] current_Base_Row;
 	double[] temp_Row;
+	ArrayList<pivot_Indicies> list_of_pivots;
+
+	private final double TOL = .0000001;
+
+	double t1;
+	double t2;
 
 	public enum Sign
 	{
@@ -25,20 +34,36 @@ public class Reduced_Echelon_Calculator
 	{
 		matrix = matrix_to_reduce;
 		pivot_Column = -1;
+		list_of_pivots = new ArrayList<pivot_Indicies>();
 
 	}
 
-	public double[][] compute()
+	public double[][] computeEchelonForm()
 	{
-		Sign sign;
 
 		for (int m = 0; m < matrix.length; m++)
 		{
+			pivot_Row = m;
+
 			find_Next_Pivot_Column(m);
 
-			current_Base_Row = Arrays.copyOfRange(matrix[m], pivot_Column, matrix[m].length);
+			// if both pivot_Row and pivot_Column are set to be out of bounds by
+			// one to big, there are no more pivot positions. Break out of loop.
+			if (nonzero_Row == matrix.length && pivot_Column == matrix[0].length)
+			{
+				break;
+			}
 
-			// Do something if pivot is zero *******************
+			// Make sure the pivot position value is nonzero, swap with a row
+			// below if it's not
+			if (m != nonzero_Row)
+			{
+				temp_Row = matrix[m]; // Arrays.copyOfRange(matrix[m], 0,
+										// matrix[m].length - 1);
+				matrix[m] = matrix[nonzero_Row];
+				matrix[nonzero_Row] = temp_Row;
+			}
+
 			// If the pivot is negative, multiple row by -1.
 			if (get_sign(matrix[m][pivot_Column]) == Sign.NEGATIVE)
 			{
@@ -48,33 +73,58 @@ public class Reduced_Echelon_Calculator
 				}
 			}
 
-			// Divide row by divisor to get pivot equal to 1.
+			// Divide row by divisor (value at pivot position) to get pivot
+			// equal to 1.
 			divisor = matrix[m][pivot_Column];
 			for (int n = pivot_Column; n < matrix[0].length; n++)
 			{
 				matrix[m][n] = matrix[m][n] / divisor;
 			}
 
-			// If on the last row, your done. Only do the next operations if m
-			// is not the last row.
+			// Copy row where pivot position is so you can use it to modify the
+			// rows below to get zeros below pivot position
+			current_Base_Row = Arrays.copyOfRange(matrix[m], 0, matrix[m].length); // tentatively
+																					// changing
+																					// second
+																					// param
+																					// from
+																					// pivot_Column
+																					// to
+																					// 0
+																					// to
+																					// fix
+																					// bug
+
+			// Turn values below pivot into zeros. If on the last row, your
+			// done. Only do the next operations if m is not the last row.
 			if (m != (matrix.length - 1))
 			{
+				multiplier = matrix[pivot_Row + 1][pivot_Column];
 				for (int m2 = m + 1; m2 < matrix.length; m2++)
 				{
+					multiplier = matrix[m2][pivot_Column];
 					switch (get_sign(matrix[m2][pivot_Column]))
 					{
 					case POSITIVE:
-						multiplier = matrix[m2][pivot_Column];
 						for (int n = pivot_Column; n < matrix[0].length; n++)
 						{
-							matrix[m2][n] = matrix[m2][n] * (-1.0);
+							// t1 = matrix[m2][n];
+							// t2 = current_Base_Row[n];
+							matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n]; // **same.
+
 						}
 						break;
 					case NEGATIVE:
-						// DO SOMETHING
+						for (int n = pivot_Column; n < matrix[0].length; n++)
+						{
+							// t1 = matrix[m2][n];
+							// t2 = current_Base_Row[n];
+							matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n]; // **same.
+
+						}
 						break;
 					case ZERO:
-						// DO SOMETHING
+						// Do nothing, move on to next row
 						break;
 					}
 				}
@@ -83,6 +133,44 @@ public class Reduced_Echelon_Calculator
 		}
 
 		return matrix;
+	}
+
+	public double[][] computeReducedEchelonForm()
+	{
+		generate_List_Of_Pivots();
+
+		for (int i = 0; i < list_of_pivots.size(); i++)
+		{
+
+		}
+
+		return matrix;
+	}
+
+	private void generate_List_Of_Pivots()
+	{
+		int m;
+		int n = 0;
+
+		for (m = 0; m < matrix.length; m++)
+		{
+			if (m == 0)
+			{
+				list_of_pivots.add(new pivot_Indicies(m, n));
+			}
+			else
+			{
+				for (n = 0; n < matrix[0].length; n++)
+				{
+					if (numbers_Are_Equal(matrix[m][n], 1))
+					{
+						list_of_pivots.add(new pivot_Indicies(m, n));
+						break;
+					}
+				}
+			}
+		}
+
 	}
 
 	public void find_Next_Pivot_Column(int row)
@@ -100,24 +188,36 @@ public class Reduced_Echelon_Calculator
 					pivot_Column = n;
 					break outerloop;
 				}
+				else
+				{
+					// Both of these are outside of bounds to signify no more
+					// pivot positions
+					nonzero_Row = matrix.length;
+					pivot_Column = matrix[0].length;
+				}
 			}
 
 		}
 	}
 
+	public boolean numbers_Are_Equal(double num1, double num2)
+	{
+		return (Math.abs(num1 - num2) < TOL);
+	}
+
 	public boolean equalsZero(double num)
 	{
-		return (num < .0000001);
+		return (Math.abs(num) < TOL);
 	}
 
 	public Sign get_sign(double num)
 	{
 		Sign sign;
-		if (num > .0000001)
+		if (num > TOL)
 		{
 			sign = Sign.POSITIVE;
 		}
-		else if (num < .0000001)
+		else if (num < -TOL)
 		{
 			sign = Sign.NEGATIVE;
 		}
@@ -126,5 +226,16 @@ public class Reduced_Echelon_Calculator
 			sign = Sign.ZERO;
 		}
 		return sign;
+	}
+
+	public static void main(String[] args)
+	{
+		double[][] matrix =
+		{
+				{ 1, 2, 3, 4 },
+				{ 5, 6, 7, 8 } };
+
+		Reduced_Echelon_Calculator calculator = new Reduced_Echelon_Calculator(matrix);
+		calculator.computeEchelonForm();
 	}
 }
