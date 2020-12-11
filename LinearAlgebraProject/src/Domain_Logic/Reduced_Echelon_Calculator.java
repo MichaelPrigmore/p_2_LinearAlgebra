@@ -9,8 +9,6 @@ import edu.princeton.cs.introcs.StdOut;
 public class Reduced_Echelon_Calculator
 {
 	private double[][] matrix;
-	// int m;
-	// int n;
 	int pivot_Column;
 	int pivot_Row;
 	int nonzero_Row;
