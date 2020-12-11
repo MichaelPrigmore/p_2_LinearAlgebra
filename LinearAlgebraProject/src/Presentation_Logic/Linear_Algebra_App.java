@@ -7,7 +7,7 @@ public class Linear_Algebra_App
 	{
 		Linear_Algebra_UI appTester = new Linear_Algebra_UI();
 		appTester.setup_matrix();
-		appTester.print_Matrix();
+		appTester.solve();
 
 	}
 

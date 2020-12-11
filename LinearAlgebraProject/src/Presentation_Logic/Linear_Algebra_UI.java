@@ -1,29 +1,74 @@
 package Presentation_Logic;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 import Domain_Logic.Matrix_Manager;
 import Domain_Logic.Reduced_Echelon_Calculator;
-import edu.princeton.cs.introcs.StdIn;
-import edu.princeton.cs.introcs.StdOut;
 
 public class Linear_Algebra_UI
 {
 	private Matrix_Manager mat;
-	DecimalFormat fmt = new DecimalFormat("0.###");
+	DecimalFormat fmt;
+	Scanner scan;
+	boolean valid_Input;
 
 	public Linear_Algebra_UI()
 	{
-		StdOut.print("Welcome to the reduced row echelon form calculator!\n\n");
+		this.scan = new Scanner(System.in);
+		this.fmt = new DecimalFormat("0.###");
 
-		// StdOut.print("Enter the number of rows in your matrix: \n");
-		// int m = StdIn.readInt();
+		System.out.print("Welcome to the Echelon Calculator!\n\n");
 
-		// StdOut.print("Enter the number of columns in your matrix: \n");
-		// int n = StdIn.readInt();
+		System.out.print("Enter a positive integer for the number of rows in your matrix: ");
+		int m = enter_An_Int_Greater_Than_Zero();
 
-		// this.mat = new Matrix_Manager(m, n);
+		System.out.print("Enter a positive integer for the number of columns in your matrix: ");
+		int n = enter_An_Int_Greater_Than_Zero();
+
+		System.out.println();
+
+		this.mat = new Matrix_Manager(m, n);
+	}
+
+	private int enter_An_Int_Greater_Than_Zero()
+	{
+		int num = 1;
+
+		do
+		{
+			if (num < 1)
+			{
+				System.out.print(
+						"\nValidation error. The integer must be greater than 0. " + "Please enter a valid ingeger:");
+			}
+
+			while (!scan.hasNextInt())
+			{
+				String input = scan.next();
+				System.out.printf("\nValidation error. \"%s\" is not a valid number. Please enter a valid ingeger:",
+						input);
+			}
+			num = scan.nextInt();
+
+		}
+		while (num < 1);
+
+		return num;
+	}
+
+	private double enter_A_Double()
+	{
+		double num = 1;
+
+		while (!scan.hasNextDouble())
+		{
+			String input = scan.next();
+			System.out.printf("\nValidation error. \"%s\" is not a number. Please enter a number:", input);
+		}
+		num = scan.nextDouble();
+
+		return num;
 	}
 
 	public void setup_matrix()
@@ -33,16 +78,16 @@ public class Linear_Algebra_UI
 		{
 			for (int n = 0; n < mat.get_My_Matrix()[m].length; n++)
 			{
-				StdOut.print("Enter the value at position (" + m + ", " + n + ") of the matrix: ");
+				System.out.print("Enter the value at position (" + m + ", " + n + ") of the matrix: ");
 
-				double value = StdIn.readDouble();
+				double value = enter_A_Double();
 
 				mat.set_Value_At_Index(m, n, value);
 			}
 
 		}
 
-		StdOut.print("\n");
+		System.out.println("\n");
 	}
 
 	public void print_Matrix()
@@ -51,9 +96,9 @@ public class Linear_Algebra_UI
 		{
 			for (int n = 0; n < mat.get_My_Matrix()[m].length; n++)
 			{
-				StdOut.print(fmt.format(mat.get_My_Matrix()[m][n]) + "\t");
+				System.out.print(fmt.format(mat.get_My_Matrix()[m][n]) + "\t");
 			}
-			StdOut.print("\n");
+			System.out.println();
 		}
 	}
 
@@ -63,22 +108,56 @@ public class Linear_Algebra_UI
 		{
 			for (int n = 0; n < matrix[m].length; n++)
 			{
-				StdOut.print(fmt.format(matrix[m][n]) + "\t");
+				System.out.print(fmt.format(matrix[m][n]) + "\t");
 			}
-			StdOut.print("\n");
+			System.out.println();
 		}
 	}
 
-	public void print_Matrix_Column_Traversal()
+	// For educational purposes. Uncomment to use. Not needed for the overall
+	// program.
+	//
+	// public void print_Matrix_Column_Traversal()
+	// {
+	// for (int n = 0; n < mat.get_My_Matrix()[0].length; n++)
+	// {
+	// for (int m = 0; m < mat.get_My_Matrix().length; m++)
+	// {
+	// System.out.println(mat.get_My_Matrix()[m][n] + "\t");
+	// }
+	// System.out.println();
+	// }
+	// }
+
+	public void solve()
 	{
-		for (int n = 0; n < mat.get_My_Matrix()[0].length; n++)
-		{
-			for (int m = 0; m < mat.get_My_Matrix().length; m++)
-			{
-				StdOut.print(mat.get_My_Matrix()[m][n] + "\t");
-			}
-			StdOut.print("\n");
-		}
+		System.out.println("Original Matrix: ");
+		System.out.println();
+
+		print_Matrix();
+
+		System.out.println();
+
+		Reduced_Echelon_Calculator calculator = new Reduced_Echelon_Calculator(mat.get_My_Matrix());
+
+		calculator.computeEchelonForm();
+
+		System.out.println("An Echelon Form: ");
+		System.out.println();
+
+		print_Matrix();
+
+		System.out.println();
+
+		calculator.computeReducedEchelonForm();
+
+		System.out.println("Unique Reduced Echelon Form: ");
+		System.out.println();
+
+		print_Matrix();
+
+		System.out.println();
+
 	}
 
 	public static void main(String[] args)
@@ -93,11 +172,11 @@ public class Linear_Algebra_UI
 		// { 1, 2, 3, 4 },
 		// { 5, 6, 7, 8 } };
 
-		// double[][] matrix =
-		// {
-		// { 1, 2, 3, 4 },
-		// { 5, 6, 7, 8 },
-		// { 9, 10, 11, 12 } };
+		double[][] matrix =
+		{
+				{ 1, 2, 3, 4 },
+				{ 5, 6, 7, 8 },
+				{ 9, 10, 11, 12 } };
 
 		// double[][] matrix =
 		// {
@@ -123,19 +202,19 @@ public class Linear_Algebra_UI
 		// { 5, 6, 7, 8 },
 		// { 9, 10, 11, 12 } };
 
-		double[][] matrix =
-		{
-				{ 5, 6, 7, 8 } };
+		// double[][] matrix =
+		// {
+		// { 5, 6, 7, 8 } };
 
 		appTester.print_Matrix(matrix);
-		StdOut.print("\n");
+		System.out.println("\n");
 
 		Reduced_Echelon_Calculator calculator = new Reduced_Echelon_Calculator(matrix);
 
 		matrix = calculator.computeEchelonForm();
 		appTester.print_Matrix(matrix);
 
-		StdOut.print("\n");
+		System.out.println("\n");
 
 		matrix = calculator.computeReducedEchelonForm();
 		appTester.print_Matrix(matrix);

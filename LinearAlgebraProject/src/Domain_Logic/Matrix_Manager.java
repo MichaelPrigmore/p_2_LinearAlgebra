@@ -56,24 +56,6 @@ public class Matrix_Manager
 		this.my_Matrix[m][n] = value;
 	}
 
-	public static void main(String[] args)
-	{
-		double[][] array =
-		{
-				{ 1, 2, 300, 4 },
-				{ 5, 6, 7, 8 } };
-
-		// array[1] = 10;
-		for (int m = 0; m < array.length; m++)
-		{
-			for (int n = 0; n < array[m].length; n++)
-			{
-				StdOut.print(array[m][n] + "\t");
-			}
-			StdOut.print("\n");
-		}
-	}
-
 	public double[][] get_My_Matrix()
 	{
 		return this.my_Matrix;

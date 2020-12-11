@@ -83,50 +83,47 @@ public class Reduced_Echelon_Calculator
 
 			// Copy row where pivot position is so you can use it to modify the
 			// rows below to get zeros below pivot position
-			current_Base_Row = Arrays.copyOfRange(matrix[m], 0, matrix[m].length); // tentatively
-																					// changing
-																					// second
-																					// param
-																					// from
-																					// pivot_Column
-																					// to
-																					// 0
-																					// to
-																					// fix
-																					// bug
+			current_Base_Row = Arrays.copyOfRange(matrix[m], 0, matrix[m].length);
 
 			// Turn values below pivot into zeros. If on the last row, your
 			// done. Only do the next operations if m is not the last row.
 			if (m != (matrix.length - 1))
 			{
-				// multiplier = matrix[pivot_Row + 1][pivot_Column];
 				for (int m2 = m + 1; m2 < matrix.length; m2++)
 				{
 					multiplier = matrix[m2][pivot_Column];
-					switch (get_sign(matrix[m2][pivot_Column]))
+
+					for (int n = pivot_Column; n < matrix[0].length; n++)
 					{
-					case POSITIVE:
-						for (int n = pivot_Column; n < matrix[0].length; n++)
-						{
-							// t1 = matrix[m2][n];
-							// t2 = current_Base_Row[n];
-							matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n]; // **same.
-
-						}
-						break;
-					case NEGATIVE:
-						for (int n = pivot_Column; n < matrix[0].length; n++)
-						{
-							// t1 = matrix[m2][n];
-							// t2 = current_Base_Row[n];
-							matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n]; // **same.
-
-						}
-						break;
-					case ZERO:
-						// Do nothing, move on to next row
-						break;
+						matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n];
 					}
+					// Refactored to above
+					// switch (get_sign(matrix[m2][pivot_Column]))
+					// {
+					// case POSITIVE:
+					// for (int n = pivot_Column; n < matrix[0].length; n++)
+					// {
+					// // t1 = matrix[m2][n];
+					// // t2 = current_Base_Row[n];
+					// matrix[m2][n] = matrix[m2][n] - multiplier *
+					// current_Base_Row[n]; // **same.
+					//
+					// }
+					// break;
+					// case NEGATIVE:
+					// for (int n = pivot_Column; n < matrix[0].length; n++)
+					// {
+					// // t1 = matrix[m2][n];
+					// // t2 = current_Base_Row[n];
+					// matrix[m2][n] = matrix[m2][n] - multiplier *
+					// current_Base_Row[n]; // **same.
+					//
+					// }
+					// break;
+					// case ZERO:
+					// // Do nothing, move on to next row
+					// break;
+					// }
 				}
 			}
 
@@ -244,14 +241,4 @@ public class Reduced_Echelon_Calculator
 		return sign;
 	}
 
-	public static void main(String[] args)
-	{
-		double[][] matrix =
-		{
-				{ 1, 2, 3, 4 },
-				{ 5, 6, 7, 8 } };
-
-		Reduced_Echelon_Calculator calculator = new Reduced_Echelon_Calculator(matrix);
-		calculator.computeEchelonForm();
-	}
 }
