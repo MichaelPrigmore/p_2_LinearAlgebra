@@ -5,50 +5,34 @@ import edu.princeton.cs.introcs.StdOut;
 
 public class Matrix_Manager
 {
-	private int number_Of_Rows_In_Matrix;
-	private int number_Of_Columns_In_Matrix;
+	private int rows;
+	private int columns;
 	private double[][] my_Matrix;
 
 	public Matrix_Manager()
 	{
-
+		this.rows = 2;
+		this.columns = 2;
+		this.my_Matrix = new double[rows][columns];
 	}
 
 	public Matrix_Manager(int m, int n)
 	{
-		this.number_Of_Rows_In_Matrix = m;
-		this.number_Of_Columns_In_Matrix = n;
+		this.rows = m;
+		this.columns = n;
 		this.my_Matrix = new double[m][n];
 	}
 
-	public int getNumber_Of_Rows_In_Matrix()
+	public void set_Rows_And_Columns(int m, int n)
 	{
-		return number_Of_Rows_In_Matrix;
-	}
-
-	public void setNumber_Of_Rows_In_Matrix(int number_Of_Rows_In_Matrix)
-	{
-		this.number_Of_Rows_In_Matrix = number_Of_Rows_In_Matrix;
-	}
-
-	public int getNumber_Of_Columns_In_Matrix()
-	{
-		return number_Of_Columns_In_Matrix;
-	}
-
-	public void setNumber_Of_Columns_In_Matrix(int number_Of_Columns_In_Matrix)
-	{
-		this.number_Of_Columns_In_Matrix = number_Of_Columns_In_Matrix;
+		this.rows = m;
+		this.columns = n;
+		this.my_Matrix = new double[m][n];
 	}
 
 	public void setMy_Matrix(double[][] my_Matrix)
 	{
 		this.my_Matrix = my_Matrix;
-	}
-
-	public double get_Value_At_Index(int m, int n)
-	{
-		return this.my_Matrix[m][n];
 	}
 
 	public void set_Value_At_Index(int m, int n, double value)

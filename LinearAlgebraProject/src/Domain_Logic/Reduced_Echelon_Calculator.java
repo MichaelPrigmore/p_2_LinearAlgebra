@@ -149,9 +149,7 @@ public class Reduced_Echelon_Calculator
 
 				for (int n = 0; n < matrix[0].length; n++)
 				{
-
-					matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n]; // **same.
-
+					matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n];
 				}
 			}
 
@@ -213,9 +211,52 @@ public class Reduced_Echelon_Calculator
 		}
 	}
 
+	public boolean these_Two_Matricies_Are_equal(double[][] mat1, double[][] mat2)
+	{
+		boolean result = true;
+
+		outerloop: for (int m = 0; m < matrix.length; m++)
+		{
+			for (int n = 0; n < matrix[m].length; n++)
+			{
+				if (!numbers_Are_Equal(mat1[m][n], mat2[m][n]))
+				{
+					result = false;
+					break outerloop;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public boolean these_Two_Matricies_Are_equal(double[][] mat1, double[][] mat2, double tol)
+	{
+		boolean result = true;
+
+		outerloop: for (int m = 0; m < matrix.length; m++)
+		{
+			for (int n = 0; n < matrix[m].length; n++)
+			{
+				if (!numbers_Are_Equal(mat1[m][n], mat2[m][n], tol))
+				{
+					result = false;
+					break outerloop;
+				}
+			}
+		}
+
+		return result;
+	}
+
 	public boolean numbers_Are_Equal(double num1, double num2)
 	{
 		return (Math.abs(num1 - num2) < TOL);
+	}
+
+	public boolean numbers_Are_Equal(double num1, double num2, double tol)
+	{
+		return (Math.abs(num1 - num2) < tol);
 	}
 
 	public boolean equalsZero(double num)

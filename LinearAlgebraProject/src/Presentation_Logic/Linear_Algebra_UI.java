@@ -20,10 +20,10 @@ public class Linear_Algebra_UI
 
 		System.out.print("Welcome to the Echelon Calculator!\n\n");
 
-		System.out.print("Enter a positive integer for the number of rows in your matrix: ");
+		System.out.print("Enter the number of rows for your matrix (must be an integer greater than 1): ");
 		int m = enter_An_Int_Greater_Than_Zero();
 
-		System.out.print("Enter a positive integer for the number of columns in your matrix: ");
+		System.out.print("Enter the number of columns for your matrix (must be an integer greater than 1): ");
 		int n = enter_An_Int_Greater_Than_Zero();
 
 		System.out.println();
@@ -37,10 +37,10 @@ public class Linear_Algebra_UI
 
 		do
 		{
-			if (num < 1)
+			if (num < 2)
 			{
 				System.out.print(
-						"\nValidation error. The integer must be greater than 0. " + "Please enter a valid ingeger:");
+						"\nValidation error. The integer must be greater than 1. " + "Please enter a valid ingeger:");
 			}
 
 			while (!scan.hasNextInt())
