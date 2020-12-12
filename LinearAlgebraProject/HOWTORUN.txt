@@ -1,0 +1,79 @@
+App Description
+
+The Linear Algebra App allows users to input values to create a matrix. Elementary row operations from 
+linear algebra are used to put the entered matrix into an Echelon Form. Echelon Forms are not unique. 
+The app then continues to operate on the matrix until it is in its unique Reduced Echelon Form. Each 
+matrix has only one Reduced Echelon Form. All three matrices are printed for the user to see.
+
+----------------------------------------------------------------------------------------------------------
+
+How to Use the App
+
+Run the main program found in the Linear_Algebra_App.java file. It's path in the project folder is:
+Linear_Algebra_App/src/Presentation_Logic/Linear_Algebra_App.java
+
+Type in the number of rows your matrix needs and press enter. This value must be an integer greater 
+than 1. 
+
+Type in the number of columns your matrix needs and press enter. This value must be an integer greater 
+than 1.
+
+Enter the number for each value in your matrix. Press enter after each number. You will be prompted to
+enter the value at positions (m,n) where m is the index of the row and n is the index of the column of
+the position in question. For example, position (0,0) is the top left position in the matrix representing
+the position in the first row, first column. Position (2,3) refers to the position in the third row and
+the fourth column. Values are entered moving from left-to-right, top-to-bottom starting at position (0,0).
+For example, a matrix with 2 rows and 2 columns would be entered in the following pattern:
+(0,0), (0,1), (1,0), (1,1,)
+
+After these values are entered, the original matrix, echelon form, and reduced echelon form will be printed.
+The program terminates after the matrices are printed.
+
+----------------------------------------------------------------------------------------------------------
+
+How to Test the App
+
+Run the Tests_For_Linear_Algebra_Project.java program, found at the path below, as a JUnit Test:
+Linear_Algebra_App/Tests/Tests_For_Linear_Algebra_Project.java
+
+----------------------------------------------------------------------------------------------------------
+
+Below, a sample is given of the program output with the entered values. You can enter the same values to 
+get the same matricies: 
+
+Welcome to the Echelon Calculator!
+
+Enter the number of rows for your matrix (must be an integer greater than 1): 3
+Enter the number of columns for your matrix (must be an integer greater than 1): 4
+
+Enter the value at position (0, 0) of the matrix: 1
+Enter the value at position (0, 1) of the matrix: 2
+Enter the value at position (0, 2) of the matrix: 3
+Enter the value at position (0, 3) of the matrix: 4
+Enter the value at position (1, 0) of the matrix: 5
+Enter the value at position (1, 1) of the matrix: 6
+Enter the value at position (1, 2) of the matrix: 7
+Enter the value at position (1, 3) of the matrix: 8
+Enter the value at position (2, 0) of the matrix: 9
+Enter the value at position (2, 1) of the matrix: 10
+Enter the value at position (2, 2) of the matrix: 11
+Enter the value at position (2, 3) of the matrix: 12
+
+
+Original Matrix: 
+
+1	2	3	4	
+5	6	7	8	
+9	10	11	12	
+
+An Echelon Form: 
+
+1	2	3	4	
+0	1	2	3	
+0	0	0	0	
+
+Unique Reduced Echelon Form: 
+
+1	0	-1	-2	
+0	1	2	3	
+0	0	0	0	

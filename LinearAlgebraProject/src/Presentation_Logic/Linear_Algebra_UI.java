@@ -33,7 +33,7 @@ public class Linear_Algebra_UI
 
 	private int enter_An_Int_Greater_Than_Zero()
 	{
-		int num = 1;
+		int num = 2;
 
 		do
 		{
