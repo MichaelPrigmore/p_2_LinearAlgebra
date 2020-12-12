@@ -20,9 +20,6 @@ public class Reduced_Echelon_Calculator
 
 	private final double TOL = .0000001;
 
-	double t1;
-	double t2;
-
 	public enum Sign
 	{
 		POSITIVE, NEGATIVE, ZERO;

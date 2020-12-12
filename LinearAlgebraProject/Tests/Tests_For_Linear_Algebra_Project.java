@@ -9,7 +9,7 @@ import Domain_Logic.Reduced_Echelon_Calculator;
 import Domain_Logic.pivot_Indicies;
 import Presentation_Logic.Linear_Algebra_UI;
 
-class Tests_Reduced_Echelon_Calculator
+class Tests_For_Linear_Algebra_Project
 {
 
 	@Test
