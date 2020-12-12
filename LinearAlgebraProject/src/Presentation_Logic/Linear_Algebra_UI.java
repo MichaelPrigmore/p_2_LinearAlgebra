@@ -114,21 +114,6 @@ public class Linear_Algebra_UI
 		}
 	}
 
-	// For educational purposes. Uncomment to use. Not needed for the overall
-	// program.
-	//
-	// public void print_Matrix_Column_Traversal()
-	// {
-	// for (int n = 0; n < mat.get_My_Matrix()[0].length; n++)
-	// {
-	// for (int m = 0; m < mat.get_My_Matrix().length; m++)
-	// {
-	// System.out.println(mat.get_My_Matrix()[m][n] + "\t");
-	// }
-	// System.out.println();
-	// }
-	// }
-
 	public void solve()
 	{
 		System.out.println("Original Matrix: ");

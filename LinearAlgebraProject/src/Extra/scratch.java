@@ -35,21 +35,38 @@ public class scratch
 		// System.out.println("Please Enter Valid Integer");
 		// }
 
-		Scanner scanner = new Scanner(System.in);
+		// Scanner scanner = new Scanner(System.in);
+		//
+		// int number;
+		// do
+		// {
+		// System.out.print("Please enter a positive number: ");
+		// while (!scanner.hasNextInt())
+		// {
+		// String input = scanner.next();
+		// System.out.printf("\"%s\" is not a valid number.\n", input);
+		// }
+		// number = scanner.nextInt();
+		// }
+		// while (number < 0);
+		//
+		// System.out.printf("You have entered a positive number %d.\n",
+		// number);
+		// }
 
-		int number;
-		do
-		{
-			System.out.print("Please enter a positive number: ");
-			while (!scanner.hasNextInt())
-			{
-				String input = scanner.next();
-				System.out.printf("\"%s\" is not a valid number.\n", input);
-			}
-			number = scanner.nextInt();
-		}
-		while (number < 0);
-
-		System.out.printf("You have entered a positive number %d.\n", number);
+		// For educational purposes. Uncomment to use. Not needed for the
+		// overall
+		// program.
+		//
+		// public void print_Matrix_Column_Traversal()
+		// {
+		// for (int n = 0; n < mat.get_My_Matrix()[0].length; n++)
+		// {
+		// for (int m = 0; m < mat.get_My_Matrix().length; m++)
+		// {
+		// System.out.println(mat.get_My_Matrix()[m][n] + "\t");
+		// }
+		// System.out.println();
+		// }
 	}
 }
