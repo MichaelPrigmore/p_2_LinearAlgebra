@@ -43,10 +43,12 @@ public class Reduced_Echelon_Calculator
 		{
 			pivot_Row = m;
 
+			// Determine where the pivot column is.
 			find_Next_Pivot_Column(m);
 
-			// if both pivot_Row and pivot_Column are set to be out of bounds by
-			// one to big, there are no more pivot positions. Break out of loop.
+			// If both pivot_Row and pivot_Column are set too large and are out
+			// of bounds by 1, there are no more pivot positions. Break out of
+			// loop.
 			if (nonzero_Row == matrix.length && pivot_Column == matrix[0].length)
 			{
 				break;
@@ -95,33 +97,7 @@ public class Reduced_Echelon_Calculator
 					{
 						matrix[m2][n] = matrix[m2][n] - multiplier * current_Base_Row[n];
 					}
-					// Refactored to above
-					// switch (get_sign(matrix[m2][pivot_Column]))
-					// {
-					// case POSITIVE:
-					// for (int n = pivot_Column; n < matrix[0].length; n++)
-					// {
-					// // t1 = matrix[m2][n];
-					// // t2 = current_Base_Row[n];
-					// matrix[m2][n] = matrix[m2][n] - multiplier *
-					// current_Base_Row[n]; // **same.
-					//
-					// }
-					// break;
-					// case NEGATIVE:
-					// for (int n = pivot_Column; n < matrix[0].length; n++)
-					// {
-					// // t1 = matrix[m2][n];
-					// // t2 = current_Base_Row[n];
-					// matrix[m2][n] = matrix[m2][n] - multiplier *
-					// current_Base_Row[n]; // **same.
-					//
-					// }
-					// break;
-					// case ZERO:
-					// // Do nothing, move on to next row
-					// break;
-					// }
+
 				}
 			}
 
@@ -134,7 +110,7 @@ public class Reduced_Echelon_Calculator
 	{
 		generate_List_Of_Pivots();
 
-		// stop before 0, not -1, because we don't need to delete anything above
+		// Stop before 0, not -1, because we don't need to delete anything above
 		// first row.
 		for (int i = list_of_pivots.size() - 1; i > 0; i--)
 		{

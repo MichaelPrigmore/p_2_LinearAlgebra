@@ -68,5 +68,34 @@ public class scratch
 		// }
 		// System.out.println();
 		// }
+
+		// Code below was part of Reduced_Echelon_Calculator. This was
+		// refactored to be much shorter.
+		// switch (get_sign(matrix[m2][pivot_Column]))
+		// {
+		// case POSITIVE:
+		// for (int n = pivot_Column; n < matrix[0].length; n++)
+		// {
+		// // t1 = matrix[m2][n];
+		// // t2 = current_Base_Row[n];
+		// matrix[m2][n] = matrix[m2][n] - multiplier *
+		// current_Base_Row[n]; // **same.
+		//
+		// }
+		// break;
+		// case NEGATIVE:
+		// for (int n = pivot_Column; n < matrix[0].length; n++)
+		// {
+		// // t1 = matrix[m2][n];
+		// // t2 = current_Base_Row[n];
+		// matrix[m2][n] = matrix[m2][n] - multiplier *
+		// current_Base_Row[n]; // **same.
+		//
+		// }
+		// break;
+		// case ZERO:
+		// // Do nothing, move on to next row
+		// break;
+		// }
 	}
 }
