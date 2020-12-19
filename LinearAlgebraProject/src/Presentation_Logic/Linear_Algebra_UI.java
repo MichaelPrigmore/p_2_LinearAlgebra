@@ -12,6 +12,7 @@ public class Linear_Algebra_UI
 	private DecimalFormat fmt;
 	private Scanner scan;
 	boolean valid_Input;
+	private final int MIN_ROW_OR_COL_LENGTH = 2;
 
 	public Linear_Algebra_UI()
 	{
@@ -33,11 +34,11 @@ public class Linear_Algebra_UI
 
 	private int enter_An_Int_Greater_Than_Zero()
 	{
-		int num = 2;
+		int num = MIN_ROW_OR_COL_LENGTH;
 
 		do
 		{
-			if (num < 2)
+			if (num < MIN_ROW_OR_COL_LENGTH)
 			{
 				System.out.print(
 						"\nValidation error. The integer must be greater than 1. " + "Please enter a valid ingeger:");
@@ -52,7 +53,7 @@ public class Linear_Algebra_UI
 			num = scan.nextInt();
 
 		}
-		while (num < 1);
+		while (num < MIN_ROW_OR_COL_LENGTH);
 
 		return num;
 	}
