@@ -1,5 +1,4 @@
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
@@ -166,6 +165,56 @@ class Tests_For_Linear_Algebra_Project
 		assertTrue(calculator.these_Two_Matricies_Are_equal(matrix, expected_Output));
 
 	}
+
+	@Test
+	void test_4_by_5_matrix_assert_true_01()
+	{
+		double[][] matrix =
+		{
+				{ 1, 2, 3, 4, 5 },
+				{ 6, 7, 8, 9, 10 },
+				{ 11, 12, 13, 14, 15 },
+				{ 16, 17, 18, 19, 20 } };
+
+		double[][] expected_Output =
+		{
+				{ 1, 0, -1, -2, -3 },
+				{ 0, 1, 2, 3, 4 },
+				{ 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0 } };
+
+		Reduced_Echelon_Calculator calculator = new Reduced_Echelon_Calculator(matrix);
+		matrix = calculator.computeEchelonForm();
+		matrix = calculator.computeReducedEchelonForm();
+		assertTrue(calculator.these_Two_Matricies_Are_equal(matrix, expected_Output));
+
+	}
+
+	// @Test
+	// void test_4_by_5_matrix_assert_true_02_no_solutions()
+	// {
+	// double[][] matrix =
+	// {
+	// { 1, 2, 3, 4, 5 },
+	// { 6, 7, 8, 9, 11 },
+	// { 12, 13, 14, 15, 16 },
+	// { 17, 18, 19, 20, 21 } };
+	//
+	// double[][] expected_Output =
+	// {
+	// { 1, 0, -1, -2, 0 },
+	// { 0, 1, 2, 3, 0 },
+	// { 0, 0, 0, 0, 1 },
+	// { 0, 0, 0, 0, 0 } };
+	//
+	// Reduced_Echelon_Calculator calculator = new
+	// Reduced_Echelon_Calculator(matrix);
+	// matrix = calculator.computeEchelonForm();
+	// matrix = calculator.computeReducedEchelonForm();
+	// assertTrue(calculator.these_Two_Matricies_Are_equal(matrix,
+	// expected_Output));
+	//
+	// }
 
 	@Test
 	void test_3_by_4_matrix_assert_true_01()

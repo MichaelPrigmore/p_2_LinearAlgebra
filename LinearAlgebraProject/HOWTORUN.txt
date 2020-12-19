@@ -19,11 +19,11 @@ Type in the number of columns your matrix needs and press enter. This value must
 than 1.
 
 Enter the number for each value in your matrix. Press enter after each number. You will be prompted to
-enter the value at positions (m,n) where m is the index of the row and n is the index of the column of
+enter the values at positions (m,n) where m is the index of the row and n is the index of the column of
 the position in question. For example, position (0,0) is the top left position in the matrix representing
 the position in the first row, first column. Position (2,3) refers to the position in the third row and
 the fourth column. Values are entered moving from left-to-right, top-to-bottom starting at position (0,0).
-For example, a matrix with 2 rows and 2 columns would be entered in the following pattern:
+For example, values for a matrix with two rows and two columns would be entered in the following order:
 (0,0), (0,1), (1,0), (1,1,)
 
 After these values are entered, the original matrix, echelon form, and reduced echelon form will be printed.
