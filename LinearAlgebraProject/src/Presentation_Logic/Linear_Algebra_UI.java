@@ -32,6 +32,11 @@ public class Linear_Algebra_UI
 		this.calculator = new Reduced_Echelon_Calculator(m, n);
 	}
 
+	public Linear_Algebra_UI(String testing)
+	{
+		this.fmt = new DecimalFormat("0.###");
+	}
+
 	private int enter_An_Int_Greater_Than_Zero()
 	{
 		int num = MIN_ROW_OR_COL_LENGTH;
@@ -91,18 +96,6 @@ public class Linear_Algebra_UI
 		System.out.println("\n");
 	}
 
-	// public void print_Matrix()
-	// {
-	// for (int m = 0; m < mat.get_My_Matrix().length; m++)
-	// {
-	// for (int n = 0; n < mat.get_My_Matrix()[m].length; n++)
-	// {
-	// System.out.print(fmt.format(mat.get_My_Matrix()[m][n]) + "\t");
-	// }
-	// System.out.println();
-	// }
-	// }
-
 	public void print_Matrix(double[][] matrix)
 	{
 		for (int m = 0; m < matrix.length; m++)
@@ -143,5 +136,44 @@ public class Linear_Algebra_UI
 		System.out.println();
 
 	}
+
+	// public static void main(String[] args)
+	// {
+	// Linear_Algebra_UI appTester = new Linear_Algebra_UI("testing");
+	//
+	// // double[][] matrix =
+	// // {
+	// // { 1, 2, 1, 1, 8 },
+	// // { 1, 2, 2, -1, 12 },
+	// // { 2, 4, 0, 6, 4 } };
+	//
+	// double[][] matrix =
+	// {
+	// { 1, 2, 3, 4, 5 },
+	// { 6, 7, 8, 9, 11 },
+	// { 12, 13, 14, 15, 16 },
+	// { 17, 18, 19, 20, 21 } };
+	//
+	// double[][] expected_Output =
+	// {
+	// { 1, 2, 0, 3, 0 },
+	// { 0, 0, 1, -2, 0 },
+	// { 0, 0, 0, 0, 1 } };
+	//
+	// Reduced_Echelon_Calculator calculator = new
+	// Reduced_Echelon_Calculator(matrix);
+	//
+	// appTester.print_Matrix(calculator.getManager().get_My_Matrix());
+	// System.out.println();
+	//
+	// matrix = calculator.computeEchelonForm();
+	// appTester.print_Matrix(calculator.getManager().get_My_Matrix());
+	// System.out.println();
+	//
+	// matrix = calculator.computeReducedEchelonForm();
+	// appTester.print_Matrix(calculator.getManager().get_My_Matrix());
+	// System.out.println();
+	//
+	// }
 
 }

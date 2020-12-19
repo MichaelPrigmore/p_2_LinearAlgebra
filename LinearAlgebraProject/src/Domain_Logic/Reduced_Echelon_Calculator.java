@@ -56,10 +56,9 @@ public class Reduced_Echelon_Calculator
 			// Determine where the pivot column is.
 			find_Next_Pivot_Column(m);
 
-			// If both pivot_Row and pivot_Column are set too large and are out
-			// of bounds by 1, there are no more pivot positions. Break out of
-			// loop.
-			if (nonzero_Row == matrix.length && pivot_Column == matrix[0].length)
+			// If pivot_Column is set too large and are out of bounds by 1,
+			// there are no more pivot positions. Break out of loop.
+			if (pivot_Column == matrix[0].length)
 			{
 				break;
 			}
