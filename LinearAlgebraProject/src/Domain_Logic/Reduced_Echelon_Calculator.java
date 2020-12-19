@@ -9,6 +9,7 @@ import edu.princeton.cs.introcs.StdOut;
 public class Reduced_Echelon_Calculator
 {
 	private double[][] matrix;
+	private Matrix_Manager manager;
 	int pivot_Column;
 	int pivot_Row;
 	int nonzero_Row;
@@ -25,9 +26,19 @@ public class Reduced_Echelon_Calculator
 		POSITIVE, NEGATIVE, ZERO;
 	}
 
+	public Reduced_Echelon_Calculator(int m, int n)
+	{
+
+		this.manager = new Matrix_Manager(m, n);
+		pivot_Column = -1;
+		list_of_pivots = new ArrayList<pivot_Indicies>();
+
+	}
+
 	public Reduced_Echelon_Calculator(double[][] matrix_to_reduce)
 	{
-		matrix = matrix_to_reduce;
+		this.manager = new Matrix_Manager();
+		manager.setMy_Matrix(matrix_to_reduce);
 		pivot_Column = -1;
 		list_of_pivots = new ArrayList<pivot_Indicies>();
 
@@ -35,6 +46,8 @@ public class Reduced_Echelon_Calculator
 
 	public double[][] computeEchelonForm()
 	{
+
+		matrix = manager.get_My_Matrix();
 
 		for (int m = 0; m < matrix.length; m++)
 		{
@@ -186,9 +199,9 @@ public class Reduced_Echelon_Calculator
 	{
 		boolean result = true;
 
-		outerloop: for (int m = 0; m < matrix.length; m++)
+		outerloop: for (int m = 0; m < mat1.length; m++)
 		{
-			for (int n = 0; n < matrix[m].length; n++)
+			for (int n = 0; n < mat1[m].length; n++)
 			{
 				if (!numbers_Are_Equal(mat1[m][n], mat2[m][n]))
 				{
@@ -205,9 +218,9 @@ public class Reduced_Echelon_Calculator
 	{
 		boolean result = true;
 
-		outerloop: for (int m = 0; m < matrix.length; m++)
+		outerloop: for (int m = 0; m < mat1.length; m++)
 		{
-			for (int n = 0; n < matrix[m].length; n++)
+			for (int n = 0; n < mat1[m].length; n++)
 			{
 				if (!numbers_Are_Equal(mat1[m][n], mat2[m][n], tol))
 				{
@@ -251,6 +264,16 @@ public class Reduced_Echelon_Calculator
 			sign = Sign.ZERO;
 		}
 		return sign;
+	}
+
+	public Matrix_Manager getManager()
+	{
+		return manager;
+	}
+
+	public void setManager(Matrix_Manager manager)
+	{
+		this.manager = manager;
 	}
 
 }
