@@ -234,6 +234,8 @@ public class Reduced_Echelon_Calculator
 
 	public boolean numbers_Are_Equal(double num1, double num2)
 	{
+		double num = Math.abs(num1 - num2);
+
 		return (Math.abs(num1 - num2) < TOL);
 	}
 
